@@ -251,7 +251,7 @@ class SignUpPage extends StatelessWidget {
           ),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/home');
+              Navigator.pushReplacementNamed(context, '/main');
             },
             child: Text(
               'Sign Up',

@@ -1,4 +1,4 @@
-import 'package:bwa_ecom_prov/pages/home_page.dart';
+import 'package:bwa_ecom_prov/pages/main_page/main_page.dart';
 import 'package:bwa_ecom_prov/pages/signin_page.dart';
 import 'package:bwa_ecom_prov/pages/signup_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashPage(),
         '/signin': (context) => SignInPage(),
         '/signup': (context) => SignUpPage(),
-        '/home': (context) => HomePage(),
+        '/main': (context) => MainPage(),
       },
     );
   }
