@@ -1,4 +1,6 @@
+import 'package:bwa_ecom_prov/pages/home_page.dart';
 import 'package:bwa_ecom_prov/pages/signin_page.dart';
+import 'package:bwa_ecom_prov/pages/signup_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashPage(),
         '/signin': (context) => SignInPage(),
+        '/signup': (context) => SignUpPage(),
+        '/home': (context) => HomePage(),
       },
     );
   }
