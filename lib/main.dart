@@ -1,4 +1,4 @@
-import 'package:bwa_ecom_prov/pages/signin_page.dart.dart';
+import 'package:bwa_ecom_prov/pages/signin_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
