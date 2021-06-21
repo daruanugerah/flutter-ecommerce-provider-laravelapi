@@ -1,4 +1,5 @@
 import 'package:bwa_ecom_prov/theme.dart';
+import 'package:bwa_ecom_prov/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -169,10 +170,54 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget popularProductsTitle() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin,
+          left: defaultMargin,
+          right: defaultMargin,
+        ),
+        child: Text(
+          'Popular Products',
+          style: primaryTextStyle.copyWith(
+            fontSize: 22,
+            fontWeight: semiBold,
+          ),
+        ),
+      );
+    }
+
+    Widget popularProductsCard() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              SizedBox(
+                width: defaultMargin,
+              ),
+              Row(
+                children: [
+                  ProductCard(),
+                  ProductCard(),
+                  ProductCard(),
+                ],
+              )
+            ],
+          ),
+        ),
+      );
+    }
+
     return ListView(
       children: [
         header(),
         categories(),
+        popularProductsTitle(),
+        popularProductsCard(),
       ],
     );
   }
