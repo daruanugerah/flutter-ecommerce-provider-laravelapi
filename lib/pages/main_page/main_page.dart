@@ -128,12 +128,15 @@ class _MainPageState extends State<MainPage> {
       }
     }
 
-    return Scaffold(
-      backgroundColor: backgroundColor1,
-      floatingActionButton: cartButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: customBottomNav(),
-      body: body(),
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        backgroundColor: backgroundColor1,
+        floatingActionButton: cartButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: customBottomNav(),
+        body: body(),
+      ),
     );
   }
 }
