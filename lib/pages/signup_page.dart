@@ -294,22 +294,30 @@ class SignUpPage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: backgroundColor1,
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return SafeArea(
+          child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: backgroundColor1,
+        body: ListView(
           children: [
-            header(),
-            nameInput(),
-            usernameInput(),
-            emailInput(),
-            passwordInput(),
-            signUpButton(),
-            Spacer(),
-            footer(),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  header(),
+                  nameInput(),
+                  usernameInput(),
+                  emailInput(),
+                  passwordInput(),
+                  signUpButton(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  footer(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
