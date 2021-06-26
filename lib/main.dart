@@ -1,4 +1,5 @@
 import 'package:bwa_ecom_prov/pages/detail_chat_page.dart';
+import 'package:bwa_ecom_prov/pages/edit_profile_page.dart';
 import 'package:bwa_ecom_prov/pages/main_page/main_page.dart';
 import 'package:bwa_ecom_prov/pages/signin_page.dart';
 import 'package:bwa_ecom_prov/pages/signup_page.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpPage(),
         '/main': (context) => MainPage(),
         '/detail-chat': (context) => DetailChatPage(),
+        '/edit-profile': (context) => EditProfilePage(),
       },
     );
   }
