@@ -2,12 +2,12 @@ import 'package:bwa_ecom_prov/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class ProductPage extends StatefulWidget {
+class DetailProductPage extends StatefulWidget {
   @override
-  _ProductPageState createState() => _ProductPageState();
+  _DetailProductPageState createState() => _DetailProductPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _DetailProductPageState extends State<DetailProductPage> {
   List images = [
     'assets/image_shoes.png',
     'assets/image_shoes.png',

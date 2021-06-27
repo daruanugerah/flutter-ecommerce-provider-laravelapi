@@ -6,7 +6,7 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.pushNamed(context, '/detail-product');
       },
       child: Container(
         margin: EdgeInsets.only(
