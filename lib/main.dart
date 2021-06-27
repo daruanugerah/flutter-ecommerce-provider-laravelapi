@@ -1,5 +1,6 @@
 import 'package:bwa_ecom_prov/pages/cart_page.dart';
 import 'package:bwa_ecom_prov/pages/checkout_page.dart';
+import 'package:bwa_ecom_prov/pages/co_success_page.dart';
 import 'package:bwa_ecom_prov/pages/detail_chat_page.dart';
 import 'package:bwa_ecom_prov/pages/edit_profile_page.dart';
 import 'package:bwa_ecom_prov/pages/main_page/main_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/detail-product': (context) => DetailProductPage(),
         '/cart': (context) => CartPage(),
         '/checkout': (context) => CheckoutPage(),
+        '/checkout-success': (context) => CheckoutSuccessPage(),
       },
     );
   }
