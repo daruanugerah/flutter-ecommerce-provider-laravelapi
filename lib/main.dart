@@ -8,7 +8,9 @@ import 'package:bwa_ecom_prov/pages/detail_product_page.dart';
 import 'package:bwa_ecom_prov/pages/signin_page.dart';
 import 'package:bwa_ecom_prov/pages/signup_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
+import 'package:bwa_ecom_prov/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,20 +19,27 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => SplashPage(),
-        '/signin': (context) => SignInPage(),
-        '/signup': (context) => SignUpPage(),
-        '/main': (context) => MainPage(),
-        '/detail-chat': (context) => DetailChatPage(),
-        '/edit-profile': (context) => EditProfilePage(),
-        '/detail-product': (context) => DetailProductPage(),
-        '/cart': (context) => CartPage(),
-        '/checkout': (context) => CheckoutPage(),
-        '/checkout-success': (context) => CheckoutSuccessPage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => SplashPage(),
+          '/signin': (context) => SignInPage(),
+          '/signup': (context) => SignUpPage(),
+          '/main': (context) => MainPage(),
+          '/detail-chat': (context) => DetailChatPage(),
+          '/edit-profile': (context) => EditProfilePage(),
+          '/detail-product': (context) => DetailProductPage(),
+          '/cart': (context) => CartPage(),
+          '/checkout': (context) => CheckoutPage(),
+          '/checkout-success': (context) => CheckoutSuccessPage(),
+        },
+      ),
     );
   }
 }
