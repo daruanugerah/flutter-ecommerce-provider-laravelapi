@@ -1,11 +1,17 @@
+import 'package:bwa_ecom_prov/models/user_model.dart';
+import 'package:bwa_ecom_prov/providers/auth_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:bwa_ecom_prov/widgets/product_card.dart';
 import 'package:bwa_ecom_prov/widgets/product_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel userModel = authProvider.userModel;
+    
     //note: header
     Widget header() {
       return Container(
@@ -22,12 +28,12 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hallo, Alex',
+                    'Hallo, ${userModel.name}',
                     style: primaryTextStyle.copyWith(
                         fontSize: 24, fontWeight: semiBold),
                   ),
                   Text(
-                    '@alexkeinn',
+                    '@${userModel.username}',
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -42,7 +48,7 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('assets/image_profile.png'),
+                  image: NetworkImage(userModel.profilePhotoUrl),
                 ),
               ),
             ),

@@ -1,9 +1,15 @@
+import 'package:bwa_ecom_prov/models/user_model.dart';
+import 'package:bwa_ecom_prov/providers/auth_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel userModel = authProvider.userModel;
+    
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -42,7 +48,7 @@ class EditProfilePage extends StatelessWidget {
             ),
             TextFormField(
               decoration: InputDecoration(
-                hintText: 'Alex Keinnzal',
+                hintText: userModel.name,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -69,7 +75,7 @@ class EditProfilePage extends StatelessWidget {
             ),
             TextFormField(
               decoration: InputDecoration(
-                hintText: '@alexkeinn',
+                hintText: '@${userModel.username}',
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -96,7 +102,7 @@ class EditProfilePage extends StatelessWidget {
             ),
             TextFormField(
               decoration: InputDecoration(
-                hintText: 'alex.kein@gmail.com',
+                hintText: userModel.email,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -125,7 +131,8 @@ class EditProfilePage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('assets/image_profile.png'),
+                  fit: BoxFit.fill,
+                  image: NetworkImage(userModel.profilePhotoUrl),
                 ),
               ),
             ),

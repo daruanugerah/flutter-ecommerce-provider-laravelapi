@@ -1,5 +1,4 @@
 import 'package:bwa_ecom_prov/providers/auth_provider.dart';
-import 'package:bwa_ecom_prov/services/auth_service.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:bwa_ecom_prov/widgets/loading_button.dart';
 import 'package:flutter/material.dart';
