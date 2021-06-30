@@ -1,12 +1,23 @@
+import 'package:bwa_ecom_prov/models/product_model.dart';
+import 'package:bwa_ecom_prov/pages/detail_product_page.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductTile extends StatelessWidget {
+  final ProductModel productModel;
+
+  const ProductTile(this.productModel);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/detail-product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailProductPage(productModel),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -18,8 +29,8 @@ class ProductTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                'assets/image_shoes.png',
+              child: Image.network(
+                productModel.galleries[0].url,
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -33,24 +44,25 @@ class ProductTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Football',
+                    productModel.category.name,
                     style: secondaryTextStyle.copyWith(fontSize: 12),
                   ),
                   SizedBox(
                     height: 6,
                   ),
                   Text(
-                    'Predator 20.3 Firm Ground',
+                    productModel.name,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
                     ),
+                    maxLines: 1,
                   ),
                   SizedBox(
                     height: 6,
                   ),
                   Text(
-                    '\$68.47',
+                    '\$${productModel.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),

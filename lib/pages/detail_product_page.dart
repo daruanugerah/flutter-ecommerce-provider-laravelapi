@@ -1,8 +1,13 @@
+import 'package:bwa_ecom_prov/models/product_model.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class DetailProductPage extends StatefulWidget {
+  final ProductModel productModel;
+
+  DetailProductPage(this.productModel);
+
   @override
   _DetailProductPageState createState() => _DetailProductPageState();
 }
@@ -18,11 +23,13 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
   List familiarShoes = [
     'assets/image_shoes.png',
-    'assets/image_shoes.png',
-    'assets/image_shoes.png',
-    'assets/image_shoes.png',
-    'assets/image_shoes.png',
-    'assets/image_shoes.png',
+    'assets/image_shoes2.png',
+    'assets/image_shoes3.png',
+    'assets/image_shoes4.png',
+    'assets/image_shoes5.png',
+    'assets/image_shoes6.png',
+    'assets/image_shoes7.png',
+    'assets/image_shoes8.png',
   ];
 
   @override
@@ -83,10 +90,10 @@ class _DetailProductPageState extends State<DetailProductPage> {
             ),
           ),
           CarouselSlider(
-            items: images
+            items: widget.productModel.galleries
                 .map(
-                  (e) => Image.asset(
-                    e,
+                  (e) => Image.network(
+                    e.url,
                     width: MediaQuery.of(context).size.width,
                     height: 310,
                     fit: BoxFit.cover,
@@ -106,7 +113,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: images.map(
+              children: widget.productModel.galleries.map(
                 (e) {
                   index++;
                   return indicator(index);
@@ -144,14 +151,14 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'TERREN URBAN LOW',
+                          widget.productModel.name,
                           style: primaryTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: semiBold,
                           ),
                         ),
                         Text(
-                          'Hiking',
+                          widget.productModel.category.name,
                           style: secondaryTextStyle.copyWith(fontSize: 12),
                         )
                       ],
@@ -185,7 +192,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\$143,98',
+                    '\$${widget.productModel.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -216,7 +223,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                     height: 12,
                   ),
                   Text(
-                    'Unpaved trails and mixed surfaces are easy when you have the traction and support you need. Casual enough for the daily commute.',
+                    widget.productModel.description,
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                     ),

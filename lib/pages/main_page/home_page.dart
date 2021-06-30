@@ -1,5 +1,6 @@
 import 'package:bwa_ecom_prov/models/user_model.dart';
 import 'package:bwa_ecom_prov/providers/auth_provider.dart';
+import 'package:bwa_ecom_prov/providers/product_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:bwa_ecom_prov/widgets/product_card.dart';
 import 'package:bwa_ecom_prov/widgets/product_tile.dart';
@@ -11,7 +12,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel userModel = authProvider.userModel;
-    
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
     //note: header
     Widget header() {
       return Container(
@@ -207,11 +209,9 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                ],
+                children: productProvider.productModel
+                    .map((e) => ProductCard(e))
+                    .toList(),
               )
             ],
           ),
@@ -240,12 +240,8 @@ class HomePage extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 14),
         child: Column(
-          children: [
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-          ],
+          children:
+              productProvider.productModel.map((e) => ProductTile(e)).toList(),
         ),
       );
     }

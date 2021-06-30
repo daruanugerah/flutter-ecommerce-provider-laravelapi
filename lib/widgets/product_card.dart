@@ -1,14 +1,25 @@
+import 'package:bwa_ecom_prov/models/product_model.dart';
+import 'package:bwa_ecom_prov/pages/detail_product_page.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
+  final ProductModel productModel;
+
+  const ProductCard(this.productModel);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/detail-product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailProductPage(productModel),
+          ),
+        );
       },
-          child: Container(
+      child: Container(
         width: 215,
         height: 278,
         margin: EdgeInsets.only(
@@ -24,8 +35,8 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Image.asset(
-              'assets/image_shoes.png',
+            Image.network(
+              productModel.galleries[0].url,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
@@ -36,7 +47,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hiking',
+                    productModel.category.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
@@ -45,18 +56,19 @@ class ProductCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'COURT VISION 2.0',
+                    productModel.name,
                     style: blackTextStyle.copyWith(
                         fontSize: 18, fontWeight: semiBold),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   SizedBox(
                     height: 6,
                   ),
                   Text(
-                    '\$56.67',
-                    style:
-                        priceTextStyle.copyWith(fontSize: 14, fontWeight: medium),
+                    '\$${productModel.price}',
+                    style: priceTextStyle.copyWith(
+                        fontSize: 14, fontWeight: medium),
                   ),
                 ],
               ),
