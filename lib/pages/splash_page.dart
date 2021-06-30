@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:bwa_ecom_prov/providers/product_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -11,11 +13,13 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
+    getInit();
     super.initState();
-    Timer(
-      Duration(seconds: 3),
-      () => Navigator.pushReplacementNamed(context, '/signin'),
-    );
+  }
+
+  getInit() async {
+    await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    Navigator.pushReplacementNamed(context, '/signin');
   }
 
   @override

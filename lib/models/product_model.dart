@@ -31,7 +31,9 @@ class ProductModel {
     description = json['description'];
     tags = json['tags'];
     category = CategoryModel.fromJson(json['category']);
-    galleries = json['galleries'].map((e) => GalleryModel.fromJson(e)).toList();
+    galleries = json['galleries']
+        .map<GalleryModel>((e) => GalleryModel.fromJson(e))
+        .toList();
     createdAt = DateTime.parse(json[
         'created_at']); // bcause data type in api is string, so parse datetime
     updatedAt = DateTime.parse(json[
