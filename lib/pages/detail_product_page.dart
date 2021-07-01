@@ -1,7 +1,9 @@
 import 'package:bwa_ecom_prov/models/product_model.dart';
+import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailProductPage extends StatefulWidget {
   final ProductModel productModel;
@@ -34,6 +36,8 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Widget indicator(int index) {
       return Container(
         width: currentIndex == index ? 16 : 4,
@@ -164,9 +168,38 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/button_wishlist.png',
-                    width: 46,
+                  GestureDetector(
+                    onTap: () {
+                      wishlistProvider.setProduct(widget.productModel);
+
+                      if (wishlistProvider.isWishlist(widget.productModel)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: secondaryColor,
+                            content: Text(
+                              "Has been added to the Wishlist",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: alertColor,
+                            content: Text(
+                              "Has been removed from the Wishlist",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Image.asset(
+                      wishlistProvider.isWishlist(widget.productModel)
+                          ? 'assets/button_wishlist_blue.png'
+                          : 'assets/button_wishlist.png',
+                      width: 46,
+                    ),
                   ),
                 ],
               ),

@@ -10,6 +10,7 @@ import 'package:bwa_ecom_prov/pages/signup_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
 import 'package:bwa_ecom_prov/providers/auth_provider.dart';
 import 'package:bwa_ecom_prov/providers/product_provider.dart';
+import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WishlistProvider(),
         ),
       ],
       child: MaterialApp(
