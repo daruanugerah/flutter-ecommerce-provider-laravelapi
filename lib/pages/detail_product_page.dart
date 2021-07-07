@@ -94,7 +94,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                     height: 44,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/cart');
+                        Navigator.pushReplacementNamed(context, '/cart');
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: primaryColor,
