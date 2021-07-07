@@ -1,4 +1,5 @@
 import 'package:bwa_ecom_prov/models/product_model.dart';
+import 'package:bwa_ecom_prov/providers/cart_provider.dart';
 import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -37,6 +38,86 @@ class _DetailProductPageState extends State<DetailProductPage> {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
+    Future<void> showSuccessDialog() async {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) => Container(
+          width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+          child: AlertDialog(
+            backgroundColor: backgroundColor3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.close,
+                        color: primaryTextColor,
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/icon_success.png',
+                    width: 100,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Hurray :)',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Item added successfully',
+                    style: secondaryTextStyle,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 154,
+                    height: 44,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text(
+                        'View My Cart',
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: medium,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     Widget indicator(int index) {
       return Container(
@@ -332,7 +413,10 @@ class _DetailProductPageState extends State<DetailProductPage> {
                     child: Container(
                       height: 54,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          cartProvider.addCart(widget.productModel);
+                          showSuccessDialog();
+                        },
                         child: Text(
                           'Add to Cart',
                           style: primaryTextStyle.copyWith(

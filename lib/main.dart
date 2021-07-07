@@ -4,11 +4,11 @@ import 'package:bwa_ecom_prov/pages/co_success_page.dart';
 import 'package:bwa_ecom_prov/pages/detail_chat_page.dart';
 import 'package:bwa_ecom_prov/pages/edit_profile_page.dart';
 import 'package:bwa_ecom_prov/pages/main_page/main_page.dart';
-import 'package:bwa_ecom_prov/pages/detail_product_page.dart';
 import 'package:bwa_ecom_prov/pages/signin_page.dart';
 import 'package:bwa_ecom_prov/pages/signup_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
 import 'package:bwa_ecom_prov/providers/auth_provider.dart';
+import 'package:bwa_ecom_prov/providers/cart_provider.dart';
 import 'package:bwa_ecom_prov/providers/product_provider.dart';
 import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => WishlistProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
         ),
       ],
       child: MaterialApp(
