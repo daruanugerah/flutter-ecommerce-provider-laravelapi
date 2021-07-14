@@ -1,4 +1,5 @@
 import 'package:bwa_ecom_prov/models/product_model.dart';
+import 'package:bwa_ecom_prov/pages/detail_chat_page.dart';
 import 'package:bwa_ecom_prov/providers/cart_provider.dart';
 import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
@@ -397,12 +398,23 @@ class _DetailProductPageState extends State<DetailProductPage> {
               margin: EdgeInsets.all(defaultMargin),
               child: Row(
                 children: [
-                  Container(
-                    width: 54,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/button_chat.png'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailChatPage(widget.productModel),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 54,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/button_chat.png'),
+                        ),
                       ),
                     ),
                   ),
