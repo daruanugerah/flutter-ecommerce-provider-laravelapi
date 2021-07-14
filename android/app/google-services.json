@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916594378184",
+    "project_id": "bwa-shoes-commerce",
+    "storage_bucket": "bwa-shoes-commerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916594378184:android:abd191c5f107fc42a82cfd",
+        "android_client_info": {
+          "package_name": "id.daruanugerah.bwa_ecom_prov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916594378184-9enlmvl4n3v7udbo5rchidfl8lu5c78d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6GuscYNA4v_wmG6A1cfUtqrXrY7zkky0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916594378184-9enlmvl4n3v7udbo5rchidfl8lu5c78d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
