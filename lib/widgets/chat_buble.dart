@@ -1,3 +1,4 @@
+import 'package:bwa_ecom_prov/models/product_model.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,12 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 class ChatBuble extends StatelessWidget {
   final String textChat;
   final bool isSender;
-  final bool hasProduct;
+  final ProductModel productModel;
 
   ChatBuble({
     this.textChat = '',
     this.isSender = false,
-    this.hasProduct = false,
+    this.productModel,
   });
 
   @override
@@ -37,8 +38,8 @@ class ChatBuble extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    'assets/image_shoes.png',
+                  child: Image.network(
+                    productModel.galleries[0].url,
                     width: 50,
                   ),
                 ),
@@ -50,14 +51,14 @@ class ChatBuble extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'COURT VISION 2.0 SHOES',
+                        productModel.name,
                         style: primaryTextStyle,
                       ),
                       SizedBox(
                         height: 4,
                       ),
                       Text(
-                        '\$45,67',
+                        '\$${productModel.price}',
                         style: priceTextStyle.copyWith(fontWeight: medium),
                       )
                     ],
@@ -118,7 +119,9 @@ class ChatBuble extends StatelessWidget {
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          hasProduct ? productPreview() : SizedBox(),
+          productModel is UninitializedProductModel
+              ? SizedBox()
+              : productPreview(),
           Row(
             mainAxisAlignment:
                 isSender ? MainAxisAlignment.end : MainAxisAlignment.start,

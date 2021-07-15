@@ -1,7 +1,11 @@
+import 'package:bwa_ecom_prov/models/message_model.dart';
 import 'package:bwa_ecom_prov/models/product_model.dart';
+import 'package:bwa_ecom_prov/providers/auth_provider.dart';
+import 'package:bwa_ecom_prov/services/message_service.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:bwa_ecom_prov/widgets/chat_buble.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailChatPage extends StatefulWidget {
   ProductModel productModel;
@@ -15,8 +19,12 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
     Widget header() {
       return PreferredSize(
         preferredSize: Size.fromHeight(70),
@@ -143,6 +151,8 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: messageController,
+                        style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type message...',
                           hintStyle: subtitleTextStyle,
@@ -154,9 +164,25 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 SizedBox(
                   width: 20,
                 ),
-                Image.asset(
-                  'assets/button_send.png',
-                  width: 45,
+                GestureDetector(
+                  onTap: () {
+                    MessageService().addMessage(
+                      userModel: authProvider.userModel,
+                      isFromUser: true,
+                      productModel: widget.productModel,
+                      message: messageController.text,
+                    );
+
+                    // remove product preview and clear chat after enter chat
+                    setState(() {
+                      widget.productModel = UninitializedProductModel();
+                      messageController.text = '';
+                    });
+                  },
+                  child: Image.asset(
+                    'assets/button_send.png',
+                    width: 45,
+                  ),
                 ),
               ],
             ),
@@ -166,23 +192,31 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-        ),
-        children: [
-          ChatBuble(
-            isSender: true,
-            textChat: 'Hi, this item is still available?',
-            hasProduct: true,
-          ),
-          ChatBuble(
-            isSender: false,
-            textChat:
-                'Good night, This item is only available in size 42 and 43',
-          ),
-        ],
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream: MessageService()
+              .getMessageByUserId(userId: authProvider.userModel.id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultMargin,
+                ),
+                children: snapshot.data
+                    .map(
+                      (e) => ChatBuble(
+                        isSender: e.isFromUser,
+                        textChat: e.message,
+                        productModel: e.productModel,
+                      ),
+                    )
+                    .toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     return SafeArea(

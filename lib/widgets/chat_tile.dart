@@ -1,9 +1,14 @@
+import 'package:bwa_ecom_prov/models/message_model.dart';
 import 'package:bwa_ecom_prov/models/product_model.dart';
 import 'package:bwa_ecom_prov/pages/detail_chat_page.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:flutter/material.dart';
 
 class ChatTile extends StatelessWidget {
+  final MessageModel messageModel;
+
+  ChatTile(this.messageModel);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -43,7 +48,7 @@ class ChatTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Good night, This item is on ...',
+                        messageModel.message,
                         style: secondaryTextStyle.copyWith(
                           fontWeight: light,
                         ),
