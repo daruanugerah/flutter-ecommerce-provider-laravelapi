@@ -1,5 +1,6 @@
 import 'package:bwa_ecom_prov/models/message_model.dart';
 import 'package:bwa_ecom_prov/providers/auth_provider.dart';
+import 'package:bwa_ecom_prov/providers/pageexplore_provider.dart';
 import 'package:bwa_ecom_prov/services/message_service.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:bwa_ecom_prov/widgets/chat_tile.dart';
@@ -10,6 +11,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -62,7 +64,9 @@ class ChatPage extends StatelessWidget {
               Container(
                 height: 44,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   child: Text(
                     'Explore Store',
                     style: primaryTextStyle.copyWith(

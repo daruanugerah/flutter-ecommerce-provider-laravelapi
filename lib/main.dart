@@ -1,7 +1,6 @@
 import 'package:bwa_ecom_prov/pages/cart_page.dart';
 import 'package:bwa_ecom_prov/pages/checkout_page.dart';
 import 'package:bwa_ecom_prov/pages/co_success_page.dart';
-import 'package:bwa_ecom_prov/pages/detail_chat_page.dart';
 import 'package:bwa_ecom_prov/pages/edit_profile_page.dart';
 import 'package:bwa_ecom_prov/pages/main_page/main_page.dart';
 import 'package:bwa_ecom_prov/pages/signin_page.dart';
@@ -9,6 +8,7 @@ import 'package:bwa_ecom_prov/pages/signup_page.dart';
 import 'package:bwa_ecom_prov/pages/splash_page.dart';
 import 'package:bwa_ecom_prov/providers/auth_provider.dart';
 import 'package:bwa_ecom_prov/providers/cart_provider.dart';
+import 'package:bwa_ecom_prov/providers/pageexplore_provider.dart';
 import 'package:bwa_ecom_prov/providers/product_provider.dart';
 import 'package:bwa_ecom_prov/providers/transaction_provider.dart';
 import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
@@ -41,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TransactionProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PageProvider(),
         ),
       ],
       child: MaterialApp(

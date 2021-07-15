@@ -1,3 +1,4 @@
+import 'package:bwa_ecom_prov/providers/pageexplore_provider.dart';
 import 'package:bwa_ecom_prov/providers/wishlist_provider.dart';
 import 'package:bwa_ecom_prov/theme.dart';
 import 'package:bwa_ecom_prov/widgets/wishlist_card.dart';
@@ -8,6 +9,7 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -52,7 +54,9 @@ class WishlistPage extends StatelessWidget {
               Container(
                 height: 44,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   child: Text(
                     'Explore Store',
                     style: primaryTextStyle.copyWith(
